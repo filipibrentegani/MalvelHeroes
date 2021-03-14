@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.filipibrentegani.marvelheroes">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".application.MarvelApplication"
         android:allowBackup="true"
@@ -12,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.MarvelHeroes">
+        <activity android:name=".heroesfavorites.presentation.HeroesFavoritesActivity"></activity>
         <activity android:name=".heroeslist.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,5 +19,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

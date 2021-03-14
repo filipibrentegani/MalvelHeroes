@@ -4,6 +4,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 class ViewModelScopeProvider(
-    uiScope: CoroutineDispatcher = Dispatchers.Main,
-    ioScope: CoroutineDispatcher = Dispatchers.IO
+    val uiScope: CoroutineDispatcher = Dispatchers.Main,
+    val ioScope: CoroutineDispatcher = Dispatchers.IO
 )

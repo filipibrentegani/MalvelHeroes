@@ -9,6 +9,8 @@ interface MarvelApi {
     suspend fun getCharacters(
         @Query("apikey") apiKey: String,
         @Query("ts") timestamp: Long,
-        @Query("hash") hash: String
+        @Query("hash") hash: String,
+        @Query("limit") limit: Int,
+        @Query("offset") page: Int
     ) : CharactersResponse
 }

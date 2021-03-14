@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnFavorite"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/favorite_checked" />
+
+        <ImageView
+            android:id="@+id/ivThumbnail"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivComics"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/comic"
+            app:layout_constraintBottom_toTopOf="@id/tvComics"
+            app:layout_constraintEnd_toStartOf="@id/ivSeries"
+            app:layout_constraintStart_toEndOf="@id/ivThumbnail" />
+
+        <ImageView
+            android:id="@+id/ivSeries"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/serie"
+            app:layout_constraintBottom_toTopOf="@id/tvSeries"
+            app:layout_constraintEnd_toStartOf="@id/ivStories"
+            app:layout_constraintStart_toEndOf="@id/ivComics" />
+
+        <ImageView
+            android:id="@+id/ivStories"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/stories"
+            app:layout_constraintBottom_toTopOf="@id/tvStories"
+            app:layout_constraintEnd_toStartOf="@id/ivEvents"
+            app:layout_constraintStart_toEndOf="@id/ivSeries" />
+
+        <ImageView
+            android:id="@+id/ivEvents"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/events"
+            app:layout_constraintBottom_toTopOf="@id/tvEvents"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivStories" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toStartOf="@id/btnFavorite"
+            app:layout_constraintStart_toEndOf="@id/ivThumbnail"
+            app:layout_constraintTop_toTopOf="@id/ivThumbnail"
+            tools:text="TESTE" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            app:layout_constraintBottom_toTopOf="@id/ivComics"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            tools:text="TESTE" />
+
+        <TextView
+            android:id="@+id/tvComics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/ivThumbnail"
+            app:layout_constraintEnd_toEndOf="@id/ivComics"
+            app:layout_constraintStart_toStartOf="@id/ivComics"
+            tools:text="25" />
+
+        <TextView
+            android:id="@+id/tvSeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/ivThumbnail"
+            app:layout_constraintEnd_toEndOf="@id/ivSeries"
+            app:layout_constraintStart_toStartOf="@id/ivSeries"
+            tools:text="25" />
+
+        <TextView
+            android:id="@+id/tvStories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/ivThumbnail"
+            app:layout_constraintEnd_toEndOf="@id/ivStories"
+            app:layout_constraintStart_toStartOf="@id/ivStories"
+            tools:text="25" />
+
+        <TextView
+            android:id="@+id/tvEvents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/ivThumbnail"
+            app:layout_constraintEnd_toEndOf="@id/ivEvents"
+            app:layout_constraintStart_toStartOf="@id/ivEvents"
+            tools:text="25" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
