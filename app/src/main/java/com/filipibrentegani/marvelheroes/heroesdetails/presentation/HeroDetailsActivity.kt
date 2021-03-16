@@ -27,7 +27,6 @@ class HeroDetailsActivity : AppCompatActivity() {
         binding = ActivityHeroDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
@@ -58,7 +57,7 @@ class HeroDetailsActivity : AppCompatActivity() {
             Picasso.get().load(it).into(binding.ivThumbnail)
         })
         viewModel.descriptionLiveData.observe(this, Observer {
-            binding.tvLabelDescription.text = it
+            binding.tvDescription.text = it
         })
         viewModel.comicsLiveData.observe(this, Observer {
             adapterComics.setItems(it)
@@ -74,6 +73,9 @@ class HeroDetailsActivity : AppCompatActivity() {
         })
         viewModel.favoriteIconLiveData.observe(this, Observer {
             binding.fab.setImageResource(it)
+        })
+        viewModel.favoriteIconContentDescriptionLiveData.observe(this, Observer {
+            binding.fab.contentDescription = getString(it)
         })
     }
 

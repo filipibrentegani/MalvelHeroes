@@ -41,11 +41,12 @@ class HeroesFavoritesActivity : AppCompatActivity() {
         }
 
         viewModel.heroesLiveData.observe(this, Observer {
+            binding.recyclerView.setVisible(true)
             adapter.setHeroes(it)
         })
 
-        viewModel.hasNoFavoritesLiveData.observe(this, Observer {
-            binding.tvNoFavorites.visibility = it
+        viewModel.showHasNoFavoritesLiveData.observe(this, Observer {
+            binding.tvNoFavorites.setVisible(it)
         })
 
         viewModel.showLoadingLiveData.observe(this, Observer {

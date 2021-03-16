@@ -12,8 +12,9 @@
         android:theme="@style/Theme.MarvelHeroes">
         <activity
             android:name=".heroesdetails.presentation.HeroDetailsActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".heroesfavorites.presentation.HeroesFavoritesActivity" />
+            android:label="@string/details"/>
+        <activity android:name=".heroesfavorites.presentation.HeroesFavoritesActivity"
+            android:label="@string/favorites" />
         <activity android:name=".heroeslist.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

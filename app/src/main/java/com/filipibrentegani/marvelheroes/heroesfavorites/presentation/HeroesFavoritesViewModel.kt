@@ -1,6 +1,5 @@
 package com.filipibrentegani.marvelheroes.heroesfavorites.presentation
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,8 +13,8 @@ class HeroesFavoritesViewModel(private val useCase: HeroesListUseCase) : BaseVie
 
     private val heroes = MutableLiveData<List<Hero>>()
     val heroesLiveData: LiveData<List<Hero>> = heroes
-    private val hasNoFavorites = MutableLiveData<Int>()
-    val hasNoFavoritesLiveData: LiveData<Int> = hasNoFavorites
+    private val showHasNoFavorites = MutableLiveData<Boolean>()
+    val showHasNoFavoritesLiveData: LiveData<Boolean> = showHasNoFavorites
     private val showLoading = MutableLiveData<Boolean>()
     val showLoadingLiveData: LiveData<Boolean> = showLoading
 
@@ -26,8 +25,11 @@ class HeroesFavoritesViewModel(private val useCase: HeroesListUseCase) : BaseVie
 
             withContext(scopes.uiScope) {
                 showLoading.value = false
-                heroes.value = heroesList
-                hasNoFavorites.value = if (heroesList.isEmpty()) View.VISIBLE else View.GONE
+                if (heroesList.isEmpty()) {
+                    showHasNoFavorites.value = true
+                } else {
+                    heroes.value = heroesList
+                }
             }
         }
     }

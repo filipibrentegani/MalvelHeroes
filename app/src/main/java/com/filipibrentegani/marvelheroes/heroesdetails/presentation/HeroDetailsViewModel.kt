@@ -30,6 +30,8 @@ class HeroDetailsViewModel(private val useCase: HeroesListUseCase) : BaseViewMod
     val eventsLiveData: LiveData<List<Story>> = events
     private val favoriteIcon = MutableLiveData<Int>()
     val favoriteIconLiveData: LiveData<Int> = favoriteIcon
+    private val favoriteIconContentDescription = MutableLiveData<Int>()
+    val favoriteIconContentDescriptionLiveData: LiveData<Int> = favoriteIconContentDescription
     private lateinit var hero: Hero
     private var favoriteStateWasChanged = false
 
@@ -59,6 +61,11 @@ class HeroDetailsViewModel(private val useCase: HeroesListUseCase) : BaseViewMod
     private fun updateFavoriteState() {
         favoriteIcon.value =
             if (hero.favorite) R.drawable.favorite_checked else R.drawable.favorite_unchecked
+        favoriteIconContentDescription.value =
+            if (hero.favorite)
+                R.string.btn_favorite_checked_content_description
+            else
+                R.string.btn_favorite_unchecked_content_description
     }
 
     fun activityResult(): Int {
