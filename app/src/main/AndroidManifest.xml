@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.MarvelHeroes">
-        <activity android:name=".heroesfavorites.presentation.HeroesFavoritesActivity"></activity>
+        <activity
+            android:name=".heroesdetails.presentation.HeroDetailsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".heroesfavorites.presentation.HeroesFavoritesActivity" />
         <activity android:name=".heroeslist.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

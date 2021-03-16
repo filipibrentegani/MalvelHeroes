@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Marvel Heroes</string>
     <string name="favorites">Favoritos</string>
+    <string name="nome">Nome</string>
+    <string name="description">Descrição</string>
+    <string name="comics">Quadrinhos</string>
+    <string name="series">Series</string>
+    <string name="stories">Histórias</string>
+    <string name="events">Eventos</string>
+    <string name="error_description">Ocorreu algum erro! Tente novamente.</string>
+    <string name="try_again">Tenter novamente</string>
+    <string name="no_favorite">Você anda não tem nenhum herói marcado como favorito!</string>
+    <string name="error_paging">Não foi possível carregar informações!</string>
 </resources>

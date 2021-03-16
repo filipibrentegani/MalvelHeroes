@@ -1,21 +1,26 @@
 package com.filipibrentegani.marvelheroes.heroeslist.presentation
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.filipibrentegani.marvelheroes.R
 import com.filipibrentegani.marvelheroes.databinding.LayoutHeroFooterBinding
+import com.filipibrentegani.marvelheroes.utils.setVisible
 
 class HeroFooterViewHolder(
     private val binding: LayoutHeroFooterBinding,
-    retry: () -> Unit
+    private val retry: () -> Unit
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(loadState: LoadState) {
-        binding.progressBar.visibility = View.VISIBLE
+        binding.progressBar.setVisible(loadState is LoadState.Loading)
+        binding.btnTryAgain.setVisible(loadState is LoadState.Error)
+        binding.tvError.setVisible(loadState is LoadState.Error)
+        binding.btnTryAgain.setOnClickListener {
+            retry.invoke()
+        }
     }
 
     companion object {

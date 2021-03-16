@@ -10,14 +10,19 @@ import com.filipibrentegani.marvelheroes.entity.domain.Hero
 class HeroesListAdapter: PagingDataAdapter<Hero, HeroItemViewHolder>(DiffUtilCallBack()) {
 
     private var favoriteCallback: ((Hero) -> Unit)? = null
+    private var showHeroDetailsCallback: ((Hero) -> Unit)? = null
 
     fun setFavoriteCallback(callback: (Hero) -> Unit) {
         favoriteCallback = callback
     }
 
+    fun setShowHeroDetailsCallback(callback: (Hero) -> Unit) {
+        showHeroDetailsCallback = callback
+    }
+
     override fun onBindViewHolder(holder: HeroItemViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(it, position)
+            holder.bind(it, position, showHeroDetailsCallback)
         }
     }
 

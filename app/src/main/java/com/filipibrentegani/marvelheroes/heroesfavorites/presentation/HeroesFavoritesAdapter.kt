@@ -9,12 +9,18 @@ class HeroesFavoritesAdapter : RecyclerView.Adapter<HeroItemViewHolder>() {
 
     private val items = arrayListOf<Hero>()
     private var favoriteCallback: ((Hero) -> Unit)? = null
+    private var showHeroDetailsCallback: ((Hero) -> Unit)? = null
 
     fun setFavoriteCallback(callback: (Hero) -> Unit) {
         favoriteCallback = callback
     }
 
+    fun showHeroDetailsCallback(callback: (Hero) -> Unit) {
+        showHeroDetailsCallback = callback
+    }
+
     fun setHeroes(heroes: List<Hero>) {
+        items.clear()
         items.addAll(heroes)
         notifyDataSetChanged()
     }
@@ -32,6 +38,6 @@ class HeroesFavoritesAdapter : RecyclerView.Adapter<HeroItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: HeroItemViewHolder, position: Int) {
-        holder.bind(items[position], position)
+        holder.bind(items[position], position, showHeroDetailsCallback)
     }
 }

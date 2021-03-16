@@ -1,6 +1,7 @@
 package com.filipibrentegani.marvelheroes.application
 
 import android.app.Application
+import com.filipibrentegani.marvelheroes.heroesdetails.presentation.heroesDetailsPresentationModule
 import com.filipibrentegani.marvelheroes.heroesfavorites.presentation.heroesFavoritePresentationModule
 import com.filipibrentegani.marvelheroes.heroeslist.data.heroesListDataModule
 import com.filipibrentegani.marvelheroes.heroeslist.domain.heroesListDomainModule
@@ -21,7 +22,8 @@ class MarvelApplication : Application() {
                     generalModule,
                     heroesListDataModule,
                     heroesListDomainModule,
-                    heroesFavoritePresentationModule
+                    heroesFavoritePresentationModule,
+                    heroesDetailsPresentationModule
                 )
             )
         }
