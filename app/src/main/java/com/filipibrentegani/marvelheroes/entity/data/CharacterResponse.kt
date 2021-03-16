@@ -9,6 +9,5 @@ data class CharacterResponse(
     val comics: ComicResponse,
     val series: ComicResponse,
     val stories: ComicResponse,
-    val events: ComicResponse,
-    val urls: List<URLResponse>
+    val events: ComicResponse
 )

@@ -5,10 +5,11 @@ import com.filipibrentegani.marvelheroes.heroeslist.domain.IHeroesListRepository
 import com.filipibrentegani.marvelheroes.network.MarvelApi
 import com.filipibrentegani.marvelheroes.network.NetworkUtils
 import org.koin.dsl.module
+import retrofit2.Retrofit
 
 val heroesListDataModule = module {
     factory {
-        NetworkUtils.marvelRetrofitClient(MarvelApi::class.java)
+        get<Retrofit>().create(MarvelApi::class.java)
     }
 
     factory<IHeroesListRepository> {

@@ -80,6 +80,8 @@ class HeroDetailsActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        val returnIntent = Intent()
+        setResult(viewModel.activityResult(), returnIntent)
         finish()
         return true
     }

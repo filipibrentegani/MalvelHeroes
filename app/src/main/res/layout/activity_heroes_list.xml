@@ -6,10 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".heroeslist.presentation.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <Button
+        android:id="@+id/btnTryAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/try_again"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/tvError"
+        app:layout_constraintStart_toStartOf="@id/tvError"
+        app:layout_constraintTop_toBottomOf="@id/tvError"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/ivFind"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressbar"
@@ -25,24 +41,65 @@
 
     <TextView
         android:id="@+id/tvError"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:gravity="center"
         android:text="@string/error_description"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivFind"
         tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/btnTryAgain"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tvEmptyState"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/try_again"
-        app:layout_constraintEnd_toEndOf="@id/tvError"
-        app:layout_constraintStart_toStartOf="@id/tvError"
-        app:layout_constraintTop_toBottomOf="@id/tvError" />
+        android:layout_marginHorizontal="32dp"
+        android:gravity="center"
+        android:text="@string/empty_message"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivFind"
+        tools:visibility="visible" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivFind"
+        tools:visibility="visible" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiFind"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        app:endIconMode="clear_text"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toBottomOf="@id/ivFind"
+        app:layout_constraintEnd_toStartOf="@id/ivFind"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivFind">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFind"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:hint="@string/hero_name"
+            android:imeOptions="actionSearch"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

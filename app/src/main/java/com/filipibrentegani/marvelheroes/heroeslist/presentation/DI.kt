@@ -5,14 +5,10 @@ import org.koin.dsl.module
 
 val heroesListPresentationModule = module {
     viewModel {
-        HeroesListViewModel(get(), get())
+        HeroesListViewModel(get(), get(), get())
     }
 
     factory {
         HeroesListAdapter()
-    }
-
-    factory {
-        HeroesPagingSource(get())
     }
 }

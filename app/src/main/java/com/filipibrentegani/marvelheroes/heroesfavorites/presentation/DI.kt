@@ -5,7 +5,7 @@ import org.koin.dsl.module
 
 val heroesFavoritePresentationModule = module {
     viewModel {
-        HeroesFavoritesViewModel(get())
+        HeroesFavoritesViewModel(get(), get())
     }
 
     factory {

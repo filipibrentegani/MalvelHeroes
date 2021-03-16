@@ -9,10 +9,12 @@
     <string name="stories">Histórias</string>
     <string name="events">Eventos</string>
     <string name="error_description">Ocorreu algum erro! Tente novamente.</string>
+    <string name="empty_message">Não foi localizado nenhum resultado. Tente uma nova busca!</string>
     <string name="try_again">Tenter novamente</string>
     <string name="no_favorite">Você ainda não tem nenhum herói marcado como favorito!</string>
     <string name="error_paging">Não foi possível carregar informações!</string>
     <string name="btn_favorite_checked_content_description">Selecione para desmarcar como favorito</string>
     <string name="btn_favorite_unchecked_content_description">Selecione para marcar como favorito</string>
     <string name="progress_content_description">Carregando</string>
+    <string name="hero_name">Nome do Herói</string>
 </resources>

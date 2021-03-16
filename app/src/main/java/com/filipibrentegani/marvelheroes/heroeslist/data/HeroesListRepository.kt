@@ -7,14 +7,15 @@ import com.filipibrentegani.marvelheroes.network.MarvelApi
 import com.filipibrentegani.marvelheroes.network.NetworkUtils
 
 class HeroesListRepository(private val api: MarvelApi) : IHeroesListRepository {
-    override suspend fun getHeroes(loadSize: Int, position: Int): List<CharacterResponse> {
+    override suspend fun getHeroes(loadSize: Int, position: Int, criteria: String): List<CharacterResponse> {
         val timestamp = System.currentTimeMillis()
         return api.getCharacters(
-            BuildConfig.PUBLIC_KEY_MARVEL_API,
-            timestamp,
-            NetworkUtils.marvelHashCode(timestamp),
-            loadSize,
-            position
-        ).data.results
+                criteria,
+                BuildConfig.PUBLIC_KEY_MARVEL_API,
+                timestamp,
+                NetworkUtils.marvelHashCode(timestamp),
+                loadSize,
+                position
+            ).data.results
     }
 }

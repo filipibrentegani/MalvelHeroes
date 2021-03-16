@@ -18,6 +18,9 @@ class HeroFooterViewHolder(
         binding.progressBar.setVisible(loadState is LoadState.Loading)
         binding.btnTryAgain.setVisible(loadState is LoadState.Error)
         binding.tvError.setVisible(loadState is LoadState.Error)
+        if (loadState is LoadState.Error) {
+            binding.tvError.text = loadState.error.message
+        }
         binding.btnTryAgain.setOnClickListener {
             retry.invoke()
         }

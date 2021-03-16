@@ -57,8 +57,19 @@ class HeroesFavoritesActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        setResult()
         finish()
         return true
+    }
+
+    override fun onBackPressed() {
+        setResult()
+        super.onBackPressed()
+    }
+
+    private fun setResult() {
+        val returnIntent = Intent()
+        setResult(viewModel.activityResult(), returnIntent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -71,6 +82,7 @@ class HeroesFavoritesActivity : AppCompatActivity() {
     }
 
     companion object {
+        const val REQUEST_CODE = 1
         fun launchIntent(context: Context): Intent {
             return Intent(context, HeroesFavoritesActivity::class.java)
         }

@@ -10,8 +10,6 @@ import com.google.gson.Gson
 class FavoriteHeroesRepository(private val localPersistence: HeroDao) :
     IFavoriteHeroesRepository {
 
-    private var updatedListHero = ArrayList<Hero>()
-
     override suspend fun getFavoriteHeroes(): List<Hero> {
         if (invalidatedCache) {
             updateCachedValue()
@@ -60,6 +58,7 @@ class FavoriteHeroesRepository(private val localPersistence: HeroDao) :
     }
 
     companion object {
+        private var updatedListHero = ArrayList<Hero>()
         private var invalidatedCache = true
     }
 }

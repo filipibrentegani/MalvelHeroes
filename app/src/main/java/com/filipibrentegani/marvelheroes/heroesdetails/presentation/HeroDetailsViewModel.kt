@@ -7,12 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.filipibrentegani.marvelheroes.R
 import com.filipibrentegani.marvelheroes.entity.domain.Hero
 import com.filipibrentegani.marvelheroes.entity.domain.Story
-import com.filipibrentegani.marvelheroes.heroeslist.domain.HeroesListUseCase
+import com.filipibrentegani.marvelheroes.heroeslist.domain.IChangeFavoriteStateUseCase
 import com.filipibrentegani.marvelheroes.utils.BaseViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HeroDetailsViewModel(private val useCase: HeroesListUseCase) : BaseViewModel() {
+class HeroDetailsViewModel(private val useCase: IChangeFavoriteStateUseCase) : BaseViewModel() {
 
     private val heroName = MutableLiveData<String>()
     val heroNameLiveData: LiveData<String> = heroName
