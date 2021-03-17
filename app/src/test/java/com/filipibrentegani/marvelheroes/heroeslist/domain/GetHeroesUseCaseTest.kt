@@ -74,30 +74,4 @@ class GetHeroesUseCaseTest : BaseTest() {
             assertFalse(listHeroes[0].favorite)
         }
     }
-
-    private fun getCharacterResponse(): CharacterResponse {
-        return CharacterResponse(
-            1,
-            "name",
-            "description",
-            ThumbnailResponse("http://thumbnail", "jpg"),
-            "resourceURI",
-            getComicResponse(),
-            getComicResponse(),
-            getComicResponse(),
-            getComicResponse()
-        )
-    }
-
-    private fun getComicResponse(): ComicResponse {
-        return ComicResponse(
-            1,
-            "collectionUrl",
-            listOf(getComicItemResponse(), getComicItemResponse("type"))
-        )
-    }
-
-    private fun getComicItemResponse(type: String? = null): ComicItemResponse {
-        return ComicItemResponse("resourceURI", "name", type)
-    }
 }

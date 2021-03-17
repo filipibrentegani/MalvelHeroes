@@ -1,5 +1,6 @@
 package com.filipibrentegani.marvelheroes.heroeslist.data
 
+import androidx.annotation.VisibleForTesting
 import com.filipibrentegani.marvelheroes.entity.domain.Comic
 import com.filipibrentegani.marvelheroes.entity.domain.Hero
 import com.filipibrentegani.marvelheroes.entity.domain.HeroRoom
@@ -67,7 +68,7 @@ class FavoriteHeroesRepository(private val localPersistence: HeroDao) :
     }
 
     companion object {
-        private var updatedListHero = ArrayList<Hero>()
-        private var invalidatedCache = true
+        @VisibleForTesting var updatedListHero = ArrayList<Hero>()
+        @VisibleForTesting var invalidatedCache = true
     }
 }
