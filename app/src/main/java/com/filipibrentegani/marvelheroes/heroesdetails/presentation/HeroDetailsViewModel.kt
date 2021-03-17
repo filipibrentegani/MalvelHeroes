@@ -1,18 +1,23 @@
 package com.filipibrentegani.marvelheroes.heroesdetails.presentation
 
 import android.app.Activity
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.filipibrentegani.marvelheroes.R
 import com.filipibrentegani.marvelheroes.entity.domain.Hero
 import com.filipibrentegani.marvelheroes.entity.domain.Story
+import com.filipibrentegani.marvelheroes.heroesfavorites.domain.IGetFavoriteHeroUseCase
 import com.filipibrentegani.marvelheroes.heroeslist.domain.IChangeFavoriteStateUseCase
 import com.filipibrentegani.marvelheroes.utils.BaseViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HeroDetailsViewModel(private val useCase: IChangeFavoriteStateUseCase) : BaseViewModel() {
+class HeroDetailsViewModel(
+    private val getFavoriteHeroUseCase: IGetFavoriteHeroUseCase,
+    private val useCase: IChangeFavoriteStateUseCase
+) : BaseViewModel() {
 
     private val heroName = MutableLiveData<String>()
     val heroNameLiveData: LiveData<String> = heroName
@@ -33,18 +38,24 @@ class HeroDetailsViewModel(private val useCase: IChangeFavoriteStateUseCase) : B
     private val favoriteIconContentDescription = MutableLiveData<Int>()
     val favoriteIconContentDescriptionLiveData: LiveData<Int> = favoriteIconContentDescription
     private lateinit var hero: Hero
-    private var favoriteStateWasChanged = false
+    @VisibleForTesting var favoriteStateWasChanged = false
 
-    fun setHero(hero: Hero) {
-        this.hero = hero
-        heroName.value = hero.name
-        thumbnail.value = hero.thumbnail
-        description.value = hero.description
-        comics.value = hero.comics.items
-        series.value = hero.series.items
-        stories.value = hero.stories.items
-        events.value = hero.events.items
-        updateFavoriteState()
+    fun setHero(heroId: Int) {
+        viewModelScope.launch(scopes.ioScope) {
+            getFavoriteHeroUseCase.getFavoriteHero(heroId)?.let {
+                hero = it
+            }
+            withContext(scopes.uiScope) {
+                heroName.value = hero.name
+                thumbnail.value = hero.thumbnail
+                description.value = hero.description
+                comics.value = hero.comics.items
+                series.value = hero.series.items
+                stories.value = hero.stories.items
+                events.value = hero.events.items
+                updateFavoriteState()
+            }
+        }
     }
 
     fun changeFavoriteState() {

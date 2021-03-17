@@ -35,7 +35,7 @@ class HeroesFavoritesActivity : AppCompatActivity() {
 
         adapter.showHeroDetailsCallback {
             startActivityForResult(
-                HeroDetailsActivity.launchIntent(binding.root.context, it),
+                HeroDetailsActivity.launchIntent(binding.root.context, it.id),
                 HeroDetailsActivity.REQUEST_CODE
             )
         }

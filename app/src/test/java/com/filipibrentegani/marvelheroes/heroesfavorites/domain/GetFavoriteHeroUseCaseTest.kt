@@ -2,7 +2,6 @@ package com.filipibrentegani.marvelheroes.heroesfavorites.domain
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.filipibrentegani.marvelheroes.heroeslist.BaseTest
-import com.filipibrentegani.marvelheroes.heroeslist.domain.GetFavoriteHeroesUseCase
 import com.filipibrentegani.marvelheroes.heroeslist.domain.IFavoriteHeroesRepository
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.test.runBlockingTest
@@ -12,7 +11,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-class GetFavoriteHeroesUseCaseTest : BaseTest() {
+class GetFavoriteHeroUseCaseTest : BaseTest() {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -20,8 +19,8 @@ class GetFavoriteHeroesUseCaseTest : BaseTest() {
     @Mock
     lateinit var repositoryFavoritesMock: IFavoriteHeroesRepository
 
-    private val useCase: GetFavoriteHeroesUseCase by lazy {
-        GetFavoriteHeroesUseCase(
+    private val useCase: GetFavoriteHeroUseCase by lazy {
+        GetFavoriteHeroUseCase(
             repositoryFavoritesMock
         )
     }
@@ -32,14 +31,14 @@ class GetFavoriteHeroesUseCaseTest : BaseTest() {
     }
 
     @Test
-    fun whenCallForFavoriteHeroesList_useCaseOnlyCallRepository() {
+    fun whenRequestASpecificHero_useCaseCallForRepositoryAndReturnValue() {
         runBlockingTest {
-            val favoriteHeroesFakeList = listOf(getHero(1))
-            Mockito.`when`(repositoryFavoritesMock.getFavoriteHeroes()).thenReturn(favoriteHeroesFakeList)
+            val fakeHero = getHero(1)
+            Mockito.`when`(repositoryFavoritesMock.getFavoriteHero(1)).thenReturn(fakeHero)
 
-            val heroList = useCase.getFavoriteHeroes()
+            val hero = useCase.getFavoriteHero(1)
 
-            assertEquals(favoriteHeroesFakeList, heroList)
+            assertEquals(fakeHero, hero)
         }
     }
 }

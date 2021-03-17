@@ -10,6 +10,15 @@ import com.google.gson.Gson
 class FavoriteHeroesRepository(private val localPersistence: HeroDao) :
     IFavoriteHeroesRepository {
 
+    override suspend fun getFavoriteHero(heroId: Int): Hero? {
+        if (invalidatedCache) {
+            updateCachedValue()
+        }
+        return updatedListHero.firstOrNull {
+            it.id == heroId
+        }
+    }
+
     override suspend fun getFavoriteHeroes(): List<Hero> {
         if (invalidatedCache) {
             updateCachedValue()

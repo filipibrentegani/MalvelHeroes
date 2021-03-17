@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.filipibrentegani.marvelheroes.entity.domain.Hero
 import com.filipibrentegani.marvelheroes.heroeslist.BaseTest
 import com.filipibrentegani.marvelheroes.heroeslist.domain.IChangeFavoriteStateUseCase
-import com.filipibrentegani.marvelheroes.heroesfavorites.domain.IGetFavoriteHeroesUseCase
+import com.filipibrentegani.marvelheroes.heroeslist.domain.IGetFavoriteHeroesUseCase
 import junit.framework.Assert.*
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before

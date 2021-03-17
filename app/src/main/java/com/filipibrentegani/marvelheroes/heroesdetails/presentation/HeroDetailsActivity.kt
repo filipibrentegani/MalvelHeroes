@@ -6,12 +6,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.filipibrentegani.marvelheroes.R
 import com.filipibrentegani.marvelheroes.databinding.ActivityHeroDetailsBinding
-import com.filipibrentegani.marvelheroes.entity.domain.Hero
-import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HeroDetailsActivity : AppCompatActivity() {
 
@@ -20,7 +18,7 @@ class HeroDetailsActivity : AppCompatActivity() {
     private val adapterSeries = ComicsAdapter()
     private val adapterStories = ComicsAdapter()
     private val adapterEvents = ComicsAdapter()
-    private val viewModel: HeroDetailsViewModel by inject()
+    private val viewModel: HeroDetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,12 +40,9 @@ class HeroDetailsActivity : AppCompatActivity() {
         binding.rvEvents.layoutManager = LinearLayoutManager(this)
         binding.rvEvents.adapter = adapterEvents
 
-        intent.getStringExtra(HERO)?.let {
-            val hero = Gson().fromJson<Hero>(it, Hero::class.java)
-            viewModel.setHero(hero)
-            binding.fab.setOnClickListener {
-                viewModel.changeFavoriteState()
-            }
+        viewModel.setHero(intent.getIntExtra(HERO, 0))
+        binding.fab.setOnClickListener {
+            viewModel.changeFavoriteState()
         }
 
         viewModel.heroNameLiveData.observe(this, Observer {
@@ -93,12 +88,12 @@ class HeroDetailsActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val HERO = "HERO"
+        private const val HERO = "HERO_ID"
         const val REQUEST_CODE = 2
 
-        fun launchIntent(context: Context, hero: Hero): Intent {
+        fun launchIntent(context: Context, heroID: Int): Intent {
             val intent = Intent(context, HeroDetailsActivity::class.java)
-            intent.putExtra(HERO, Gson().toJson(hero))
+            intent.putExtra(HERO, heroID)
             return intent
         }
     }

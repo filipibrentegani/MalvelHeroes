@@ -10,4 +10,10 @@ val heroesListDomainModule = module {
     factory<IChangeFavoriteStateUseCase> {
         ChangeFavoriteStateUseCase(get())
     }
+
+    factory<IGetFavoriteHeroesUseCase> {
+        GetFavoriteHeroesUseCase(
+            get()
+        )
+    }
 }
