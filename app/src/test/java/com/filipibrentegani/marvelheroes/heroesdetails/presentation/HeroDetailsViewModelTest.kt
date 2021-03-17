@@ -3,9 +3,10 @@ package com.filipibrentegani.marvelheroes.heroesdetails.presentation
 import android.app.Activity
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.filipibrentegani.marvelheroes.R
-import com.filipibrentegani.marvelheroes.heroesfavorites.domain.IGetFavoriteHeroUseCase
+import com.filipibrentegani.marvelheroes.heroesfavorites.domain.IGetHeroUseCase
 import com.filipibrentegani.marvelheroes.heroeslist.BaseTest
 import com.filipibrentegani.marvelheroes.heroeslist.domain.IChangeFavoriteStateUseCase
+import com.filipibrentegani.marvelheroes.network.ResultWrapper
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.test.runBlockingTest
@@ -25,11 +26,11 @@ class HeroDetailsViewModelTest : BaseTest() {
     lateinit var changeFavoritesUseCaseMock: IChangeFavoriteStateUseCase
 
     @Mock
-    lateinit var getFavoriteHeroUseCaseMock: IGetFavoriteHeroUseCase
+    lateinit var getHeroUseCaseMock: IGetHeroUseCase
 
     private val viewModel: HeroDetailsViewModel by lazy {
         HeroDetailsViewModel(
-            getFavoriteHeroUseCaseMock,
+            getHeroUseCaseMock,
             changeFavoritesUseCaseMock
         )
     }
@@ -43,7 +44,7 @@ class HeroDetailsViewModelTest : BaseTest() {
     @Test
     fun whenScreenReceiveANonFavoriteHero_thenViewModelSetTheScreenState() {
         runBlockingTest {
-            Mockito.`when`(getFavoriteHeroUseCaseMock.getFavoriteHero(1)).thenReturn(getHero(1))
+            Mockito.`when`(getHeroUseCaseMock.getFavoriteHero(1)).thenReturn(ResultWrapper.Success(getHero(1)))
 
             viewModel.setHero(1)
 
@@ -63,7 +64,7 @@ class HeroDetailsViewModelTest : BaseTest() {
         runBlockingTest {
             val fakeHero = getHero(1)
             fakeHero.favorite = true
-            Mockito.`when`(getFavoriteHeroUseCaseMock.getFavoriteHero(1)).thenReturn(fakeHero)
+            Mockito.`when`(getHeroUseCaseMock.getFavoriteHero(1)).thenReturn(ResultWrapper.Success(fakeHero))
 
             viewModel.setHero(1)
 
@@ -79,10 +80,22 @@ class HeroDetailsViewModelTest : BaseTest() {
     }
 
     @Test
+    fun whenScreenReceiveAFavoriteHero_andReceiveAnError_thenViewModelSetTheScreenState() {
+        runBlockingTest {
+            Mockito.`when`(getHeroUseCaseMock.getFavoriteHero(1)).thenReturn(ResultWrapper.Error(Throwable("error")))
+
+            viewModel.setHero(1)
+
+            assertTrue(viewModel.showErrorLiveData.value?.first ?: false)
+            assertEquals("error", viewModel.showErrorLiveData.value?.second)
+        }
+    }
+
+    @Test
     fun whenUserWantsChangeFavoriteState_thenViewModelCallUseCaseAndUpdateScreenState() {
         runBlockingTest {
             val fakeHero = getHero(1)
-            Mockito.`when`(getFavoriteHeroUseCaseMock.getFavoriteHero(1)).thenReturn(fakeHero)
+            Mockito.`when`(getHeroUseCaseMock.getFavoriteHero(1)).thenReturn(ResultWrapper.Success(fakeHero))
 
             viewModel.setHero(1)
             viewModel.changeFavoriteState()
